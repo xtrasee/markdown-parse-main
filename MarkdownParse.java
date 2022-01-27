@@ -18,12 +18,13 @@ public class MarkdownParse {
             int closeParen = markdown.indexOf(")", openParen);//lastIndexOf(")");//indexOf(")", openParen);
             toReturn.add(markdown.substring(openParen + 1, closeParen));
             currentIndex = closeParen + 1;
+            System.out.print("random print");
         }
         return toReturn;
     }
     public static void main(String[] args) throws IOException {
         if(args.length == 0) {
-            System.out.println("no argument");
+            System.out.println("something");
             return;
         }
 		Path fileName = Path.of(args[0]);

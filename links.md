@@ -1,6 +1,6 @@
 #example header
 
-blah blah blah www.youtube.com
+<!-- blah blah blah www.youtube.com
 another www.twitter.com
 
 [link](www.instagram.com)
@@ -10,11 +10,11 @@ another www.twitter.com
 some other text [anotherlinkwparen](https://en.wikipedia.org/wiki/) Two_pounds_(British_coin)) more sample text ()
 
 
-//example array
+example array
 some
 other
 text
 [anotherlinkwparen](https://en.wikipedia.org/wiki/Two_pounds_(British_coin))
 sample
 text
-()
+() -->
