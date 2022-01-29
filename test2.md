@@ -1,2 +1,1 @@
-hi
-[more](linkrus.com)
+[more](linkrus.com))
