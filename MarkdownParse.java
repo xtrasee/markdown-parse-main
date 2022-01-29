@@ -16,10 +16,14 @@ public class MarkdownParse {
             int closeParen = markdown.indexOf(")");
             //toReturn.add(markdown.substring(openParen + 1, closeParen));
             //currentIndex = closeParen + 1;
+            if(nextOpenBracket!= 0){
+                currentIndex++;
+            }
             if(nextOpenBracket == 0 && (nextOpenBracket < nextCloseBracket) && (nextCloseBracket < openParen) && (openParen < closeParen)){
                 toReturn.add(markdown.substring(openParen +1, closeParen));
                 markdown = markdown.substring(closeParen+1);
             }
+            //for empty files
             else{
                 currentIndex = markdown.length();
             }
