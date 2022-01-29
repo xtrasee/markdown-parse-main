@@ -11,18 +11,16 @@ public class MarkdownParse {
         // the next )
         int currentIndex = 0;
         while(currentIndex < markdown.length()) {
-            int imageIndex = markdown.indexOf("!", currentIndex);
             int nextOpenBracket = markdown.indexOf("[", currentIndex);
             //we need to find a closing bracket followed immediately by an opening parenthesis
             int nextCloseBracket = markdown.indexOf("]", nextOpenBracket);
             int openParen = markdown.indexOf("(", nextCloseBracket);
             int closeParen = markdown.indexOf(")", openParen);//lastIndexOf(")");//indexOf(")", openParen);
-            if (imageIndex != -1 && imageIndex < nextOpenBracket)  {
-                currentIndex = closeParen + 1;
-            }else {
+            if (nextOpenBracket != 0 && markdown.substring(nextOpenBracket - 1, nextOpenBracket).equals("!")){
+                currentIndex = closeParen +1;
+            }else{
             toReturn.add(markdown.substring(openParen + 1, closeParen));
-            currentIndex = closeParen + 1;
-            System.out.print("random print");
+                currentIndex = closeParen + 1;
             }
         }
         return toReturn;
@@ -34,8 +32,6 @@ public class MarkdownParse {
         }
 		Path fileName = Path.of(args[0]);
 	    String contents = Files.readString(fileName);
-        //split contents into string array
-        //for loop: for each content check for "](" and "https://"
         ArrayList<String> links = getLinks(contents);
         System.out.println(links);
     }
