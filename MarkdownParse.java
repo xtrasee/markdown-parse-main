@@ -11,25 +11,23 @@ public class MarkdownParse {
         // the next )
         int currentIndex = 0;
         while(currentIndex < markdown.length()) {
-            int nextOpenBracket = markdown.indexOf("[", currentIndex);
-            //we need to find a closing bracket followed immediately by an opening parenthesis
-            int nextCloseBracket = markdown.indexOf("]", nextOpenBracket);
-            int openParen = markdown.indexOf("(", nextCloseBracket);
-            int closeParen = markdown.indexOf(")", openParen);//lastIndexOf(")");//indexOf(")", openParen);
-            if (nextOpenBracket != 0 && markdown.substring(nextOpenBracket - 1, nextOpenBracket).equals("!")){
-                currentIndex = closeParen +1;
-            }else{
-            toReturn.add(markdown.substring(openParen + 1, closeParen));
-                currentIndex = closeParen + 1;
+            int nextOpenBracket = markdown.indexOf("[");
+            int nextCloseBracket = markdown.indexOf("]");
+            int openParen = markdown.indexOf("(");
+            int closeParen = markdown.indexOf(")");
+            //toReturn.add(markdown.substring(openParen + 1, closeParen));
+            //currentIndex = closeParen + 1;
+            if(nextOpenBracket == 0 && (nextOpenBracket < nextCloseBracket) && (nextCloseBracket < openParen) && (openParen < closeParen)){
+                toReturn.add(markdown.substring(openParen +1, closeParen));
+                markdown = markdown.substring(closeParen+1).trim();
+            }
+            else{
+                currentIndex = markdown.length();
             }
         }
         return toReturn;
     }
     public static void main(String[] args) throws IOException {
-        if(args.length == 0) {
-            System.out.println("something");
-            return;
-        }
 		Path fileName = Path.of(args[0]);
 	    String contents = Files.readString(fileName);
         ArrayList<String> links = getLinks(contents);
