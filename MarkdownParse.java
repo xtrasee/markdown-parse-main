@@ -11,15 +11,19 @@ public class MarkdownParse {
         // the next )
         int currentIndex = 0;
         while(currentIndex < markdown.length()) {
+            int imageIndex = markdown.indexOf("!", currentIndex);
             int nextOpenBracket = markdown.indexOf("[", currentIndex);
             //we need to find a closing bracket followed immediately by an opening parenthesis
             int nextCloseBracket = markdown.indexOf("]", nextOpenBracket);
             int openParen = markdown.indexOf("(", nextCloseBracket);
-            
             int closeParen = markdown.indexOf(")", openParen);//lastIndexOf(")");//indexOf(")", openParen);
+            if (imageIndex != -1 && imageIndex < nextOpenBracket)  {
+                currentIndex = closeParen + 1;
+            }else {
             toReturn.add(markdown.substring(openParen + 1, closeParen));
             currentIndex = closeParen + 1;
             System.out.print("random print");
+            }
         }
         return toReturn;
     }
