@@ -7,26 +7,16 @@ import java.util.ArrayList;
 public class MarkdownParse {
     public static ArrayList<String> getLinks(String markdown) {
         ArrayList<String> toReturn = new ArrayList<>();
-
+        // find the next [, then find the ], then find the (, then take up to
+        // the next )
         int currentIndex = 0;
         while(currentIndex < markdown.length()) {
-            int nextOpenBracket = markdown.indexOf("[");
-            int nextCloseBracket = markdown.indexOf("]");
-            int openParen = markdown.indexOf("(");
-            int closeParen = markdown.indexOf(")");
-            //toReturn.add(markdown.substring(openParen + 1, closeParen));
-            //currentIndex = closeParen + 1;
-            if(nextOpenBracket!= 0){
-                currentIndex++;
-            }
-            if(nextOpenBracket == 0 && (nextOpenBracket < nextCloseBracket) && (nextCloseBracket < openParen) && (openParen < closeParen)){
-                toReturn.add(markdown.substring(openParen +1, closeParen));
-                markdown = markdown.substring(closeParen+1);
-            }
-            //for empty files
-            else{
-                currentIndex = markdown.length();
-            }
+            int nextOpenBracket = markdown.indexOf("[", currentIndex);
+            int nextCloseBracket = markdown.indexOf("]", nextOpenBracket);
+            int openParen = markdown.indexOf("(", nextCloseBracket);
+            int closeParen = markdown.indexOf(")", openParen);
+            toReturn.add(markdown.substring(openParen + 1, closeParen));
+            currentIndex = closeParen + 1;
         }
         return toReturn;
     }
