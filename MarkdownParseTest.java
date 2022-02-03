@@ -103,4 +103,20 @@ public class MarkdownParseTest {
         List<String> expectedList = List.of("a link on the first line");
         assertEquals(expectedList,newList);
     }
+
+    public void testGetLinks09() throws IOException {
+        Path testFile = Path.of("test3.md");
+	    String readFile = Files.readString(testFile);
+        ArrayList<String> newList = MarkdownParse.getLinks(readFile);
+        List<String> expectedList = List.of("something.com)");
+        assertEquals(expectedList,newList);
+    }
+
+    public void testGetLinks10() throws IOException {
+        Path testFile = Path.of("test1.md");
+	    String readFile = Files.readString(testFile);
+        ArrayList<String> newList = MarkdownParse.getLinks(readFile);
+        List<String> expectedList = List.of();
+        assertEquals(expectedList,newList);
+    }
 }
