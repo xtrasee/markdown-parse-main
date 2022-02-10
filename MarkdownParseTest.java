@@ -104,14 +104,16 @@ public class MarkdownParseTest {
         assertEquals(expectedList,newList);
     }
 
+    @Test
     public void testGetLinks09() throws IOException {
         Path testFile = Path.of("test3.md");
 	    String readFile = Files.readString(testFile);
         ArrayList<String> newList = MarkdownParse.getLinks(readFile);
-        List<String> expectedList = List.of("something.com)");
+        List<String> expectedList = List.of("something.com");
         assertEquals(expectedList,newList);
     }
 
+    @Test
     public void testGetLinks10() throws IOException {
         Path testFile = Path.of("test1.md");
 	    String readFile = Files.readString(testFile);
